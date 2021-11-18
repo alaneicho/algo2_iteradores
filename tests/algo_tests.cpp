@@ -125,6 +125,7 @@ TEST(algo_tests, test_split) {
     EXPECT_EQ(get<1>(split(s,7)),s2);
 
     const vector<double> v = {100, 2, 3, 2, 4};
+    //cuando intenta hacer el insert del 3 falla.. antes que eso anda joya.
     vector <double> v3 = {2,3,2,4};
     vector <double> v4 = {100};
 

@@ -105,6 +105,32 @@ bool ordenado(Contenedor &c){
     return true;
 }
 
+//Ej 6
+// Implementar una operación que dado un contenedor y un elemento devuelva una tupla con dos nuevos contenedores
+//del mismo tipo que el recibido por parámetro. El primer contenedor deberá tener todos los elementos menores al
+//elemento. El segundo deberá tener los elementos mayores o iguales. La aridad será la siguiente:
+template<class Contenedor>
+std::pair<Contenedor, Contenedor> split(const Contenedor & c, const typename Contenedor::value_type& elem){
+
+    std::pair<Contenedor, Contenedor> result;
+
+    typename Contenedor::iterator it_menores = result.first.begin();
+    typename Contenedor::iterator it_mayores = result.second.begin();
+
+    typename Contenedor::const_iterator iterator = c.begin();
+
+    while(iterator != c.end()){
+        if (*iterator < elem){
+          result.first.insert(it_menores, *iterator);
+        } else {
+            result.second.insert(it_mayores, *iterator);
+        }
+        ++iterator;
+    }
+    return result;
+}
+
+
 
 
 #endif //ALGO2_LABO_CLASE5_ALGORITMOS_H
