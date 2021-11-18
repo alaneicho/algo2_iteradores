@@ -70,6 +70,22 @@ typename Iterator::value_type promedioIter(const Iterator& desde, const Iterator
     return suma/cantidad;
 }
 
+//Ej 4
+// Implementar una función que dado un contenedor y un elemento del tipo guardado en el mismo, modifique el
+//contenedor recibido por parámetro eliminando todas las apariciones del elemento parámetro. La función tendrá la
+//siguiente aridad:
+
+template<class Contenedor>
+void filtrar(Contenedor &c, const typename Contenedor::value_type& elem){
+    typename Contenedor::iterator iterator = c.begin();
+    while(iterator != c.end()){
+        if (*iterator == elem){
+            iterator = c.erase(iterator);
+        } else {
+            ++iterator;
+        }
+    }
+}
 
 
 #endif //ALGO2_LABO_CLASE5_ALGORITMOS_H
