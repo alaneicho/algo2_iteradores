@@ -52,8 +52,7 @@ typename Iterator::value_type minimoIter(const Iterator& desde, const Iterator& 
         ++iterator;
     }
     return minimo;
-};
-
+}
 
 template<class Iterator>
 typename Iterator::value_type promedioIter(const Iterator& desde, const Iterator& hasta){
@@ -132,7 +131,33 @@ std::pair<Contenedor, Contenedor> split(const Contenedor & c, const typename Con
     return result;
 }
 
+//Ej 7
+// Implementar una función que dados tres contenedores del mismo tipo, agregue los elementos de los primeros dos
+//al final del tercero. Se asume como precondición que los elementos de c1 y c2 se encuentran ordenados de manera
+//creciente (no necesariamente estricta). Los elementos se deben agregar a res de manera creciente (no estricta).
 
+template <class Contenedor>
+void merge(const Contenedor& c1, const Contenedor & c2, Contenedor & res){
+    typename Contenedor::const_iterator iterator1 = c1.begin();
+    typename Contenedor::const_iterator iterator2 = c2.begin();
+
+    while (iterator1 != c1.end() && iterator2 != c2.end()){
+        if (iterator2 == c2.end()){
+            iterator1 = res.insert(iterator1, *iterator1);
+            ++iterator1;
+        } else if (iterator1 == c1.end()){
+            iterator2 = res.insert(iterator2, *iterator2);
+            ++iterator2;
+        }
+        if(*iterator1 <= *iterator2){
+            iterator1 = res.insert(iterator1, *iterator1);
+            ++iterator1;
+        } else {
+            iterator2 = res.insert(iterator2, *iterator2);
+            ++iterator2;
+        }
+    }
+}
 
 
 #endif //ALGO2_LABO_CLASE5_ALGORITMOS_H
