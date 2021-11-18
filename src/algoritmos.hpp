@@ -121,9 +121,11 @@ std::pair<Contenedor, Contenedor> split(const Contenedor & c, const typename Con
 
     while(iterator != c.end()){
         if (*iterator < elem){
-          result.first.insert(it_menores, *iterator);
+            it_menores = result.first.insert(it_menores, *iterator);
+            ++it_menores;
         } else {
-            result.second.insert(it_mayores, *iterator);
+            it_mayores = result.second.insert(it_mayores, *iterator);
+            ++it_mayores;
         }
         ++iterator;
     }
