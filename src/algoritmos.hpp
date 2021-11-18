@@ -87,5 +87,24 @@ void filtrar(Contenedor &c, const typename Contenedor::value_type& elem){
     }
 }
 
+//Ej 5
+//Implementar una función que decida si los elementos —dispuestos en el orden en el que los devuelve el iterador—
+//están ordenados de manera estrictamente creciente.
+template<class Contenedor>
+bool ordenado(Contenedor &c){
+    typename Contenedor::const_iterator iterator = c.begin();
+    typename Contenedor::value_type este_valor = *iterator;
+    ++iterator;
+    while (iterator != c.end()){
+        if (este_valor >= *iterator){
+            return false;
+        }
+        este_valor = *iterator;
+        ++iterator;
+    }
+    return true;
+}
+
+
 
 #endif //ALGO2_LABO_CLASE5_ALGORITMOS_H
