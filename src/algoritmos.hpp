@@ -140,22 +140,24 @@ template <class Contenedor>
 void merge(const Contenedor& c1, const Contenedor & c2, Contenedor & res){
     typename Contenedor::const_iterator iterator1 = c1.begin();
     typename Contenedor::const_iterator iterator2 = c2.begin();
+    typename Contenedor::iterator iterator_res = res.begin();
 
-    while (iterator1 != c1.end() && iterator2 != c2.end()){
+    while (iterator1 != c1.end() || iterator2 != c2.end()){
         if (iterator2 == c2.end()){
-            iterator1 = res.insert(iterator1, *iterator1);
+            iterator_res = res.insert(iterator_res, *iterator1);
             ++iterator1;
         } else if (iterator1 == c1.end()){
-            iterator2 = res.insert(iterator2, *iterator2);
+            iterator_res = res.insert(iterator_res, *iterator2);
             ++iterator2;
         }
-        if(*iterator1 <= *iterator2){
-            iterator1 = res.insert(iterator1, *iterator1);
+        if(*iterator1 < *iterator2){
+            iterator_res = res.insert(iterator_res, *iterator1);
             ++iterator1;
         } else {
-            iterator2 = res.insert(iterator2, *iterator2);
+            iterator_res = res.insert(iterator_res, *iterator2);
             ++iterator2;
         }
+        //++iterator_res;
     }
 }
 
